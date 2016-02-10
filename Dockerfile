@@ -2,6 +2,8 @@
 FROM debian:jessie
 MAINTAINER Ash Wilson
 
+ENV GNURADIO_REPO_TAG=v3.7.9.1
+
 ENV GIT_BASE=/src/git
 ENV RTLSDR_GIT=git://git.osmocom.org/rtl-sdr
 ENV GR_IQBAL_GIT=git://git.osmocom.org/gr-iqbal.git
@@ -103,7 +105,8 @@ RUN cd $GIT_BASE && \
 
 # Build gnuradio
 RUN cd $GIT_BASE && \
-    git clone -c pack.threads=1 --recursive $GNURADIO_GIT && \
+    git clone -c pack.threads=1 --recursive $GNURADIO_GIT \
+    --branch $GNURADIO_REPO_TAG && \
     cd $GIT_BASE/gnuradio && \
     mkdir build && cd build && \
     cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo .. && \
