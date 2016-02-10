@@ -13,7 +13,9 @@ ENV OSMOCORE_GIT=git://git.osmocom.org/libosmocore.git
 ENV GR_OSMOSDR_GIT=git://git.osmocom.org/gr-osmosdr
 
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y \
     python-pip \
     python-gps \
     lshw \
